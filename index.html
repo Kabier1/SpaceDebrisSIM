@@ -20,10 +20,10 @@
 
         #earth {
           position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 200px;
-          height: 200px;
+          top: 35%;
+          left: 45%;
+          width: 400px;
+          height: 400px;
           margin-top: -100px;
           margin-left: -100px;
           border-radius: 50%;
@@ -124,10 +124,13 @@
             <!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->
           }
         }
-
-   </style>
+    iframe {
+         border: 1em solid black;
+    }
+</style>
 </head>
 <body>
+<iframe src="/Data/Slider.html" height="50" width="1900" title="Iframe Example"></iframe>
 <div id="earth-container">
     <div id="earth">
         <div id="satellite1"></div>
@@ -137,7 +140,10 @@
     </div>
 </div>
 
-    <script type="module" src="/JS/main.js"> </script>
+
+
+
+<script type="module" src="/JS/main.js"> </script>
 
 </body>
 </html>
