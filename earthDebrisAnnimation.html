@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpaceDebris</title>
+
     <style>
         body {
           margin: 0;
@@ -125,98 +125,21 @@
             <!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->
           }
         }
-
-    .containerSlider {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        padding-top: 5%;
-    }
-
-    .responsive-iframe1 {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    .containerSideBar {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        padding-top: 5%;
-    }
-
-    .responsive-iframe2 {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 5;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    .containerEarthAnnim {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        padding-top: 5%;
-    }
-
-    .responsive-iframe3 {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    iframe {
-         border: 1em solid black;
-    }
 </style>
 </head>
 <body>
 
-<div class="containerSlider">
-    <iframe class="responsive-iframe1" src="/slider.html" height="50" width="1900" title="Slide Across Years"></iframe>
-</div>
-
-<div class="containerSideBar">
-    <iframe class="responsive-iframe2" src="https://amazon.in" height="5000" width="2000" title="Sidebar"></iframe>
-</div>
-
-<div class="containerEarthAnnim">
-    <iframe class="responsive-iframe3" src="/earthDebrisAnnimation.html" height="50" width="1900" title="SpaceDebris"></iframe>
-</div>
-
-<!--
 <div id="earth-container">
-    <div id="earth">
-        <div id="satellite1"></div>
-        <div id="satellite2"></div>
-        <div id="satellite3"></div>
-        <div id="satellite4"></div>
-    </div>
+  <div id="earth">
+    <div id="satellite1"></div>
+    <div id="satellite2"></div>
+    <div id="satellite3"></div>
+    <div id="satellite4"></div>
+  </div>
+
 </div>
--->
-
-
 
 <script type="module" src="/JS/main.js"> </script>
 
 </body>
 </html>
-
-<!--Time delay, so they may run at the same speed but out of phase with each other -->
-<!--//Adjust SPeed of satellite - Done - use the animation property -->
-<!--//Adjust height from center -->
