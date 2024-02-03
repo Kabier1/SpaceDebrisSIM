@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SlideAcrossYears</title>
+  <style>
+    /* Optional styling for better appearance */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    input[type="range"] {
+      width: 30000px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<input type="range" id="slider" name="slider" min="1957" max="2057" value="200">
+
+<p style="color:white; font-size:2em"><span id="selectedValue">1957</span></p>
+
+<script>
+    // Optional JavaScript to display the selected value
+    const slider = document.getElementById('slider');
+    const selectedValue = document.getElementById('selectedValue');
+
+    slider.addEventListener('input', () => {
+      selectedValue.textContent = slider.value;
+    });
+</script>
+
+</body>
+</html>
