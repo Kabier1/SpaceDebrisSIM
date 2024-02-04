@@ -1,8 +1,8 @@
 //This is the main JS files to be referred to in index.html
 //Import the functions you need from the SDKs you need -->
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-        import { getDatabase, ref, get, query, onValue, child } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js"
-
+        import { getDatabase, ref, get, query, onValue, child } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+        import {collection, where } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
 
         //Your web app's Firebase configuration
         const firebaseConfig = {
@@ -22,7 +22,20 @@
         //Creating the reference (The path in db you are trying to read/write/update)
         const dbRef = ref(db);
 
-        get(child(dbRef, `/1`)).then((snapshot) => {
+        const sliderYear = ref(db, '/SliderYear/YEAR');
+        onValue(sliderYear, (snapshot) => {
+          const uptoYear = snapshot.val();
+          console.log("Year Changed to "+ uptoYear);
+        });
+
+        const Debris = collection(dbRef, "Debris");
+
+        // Create a query against the collection.
+        const q = query(Debris, where("LAUNCH_YEAR", "<=", uptoYear));
+
+        console.log("LaunchYear"+ q);
+
+        get(child(dbRef, `/Debris`)).then((snapshot) => {
             if (snapshot.exists()) {
                 console.log(snapshot.val());
             } else {
@@ -31,3 +44,6 @@
             }).catch((error) => {
                 console.error(error);
             });
+
+
+
