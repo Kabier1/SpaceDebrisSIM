@@ -22,7 +22,7 @@
         //Creating the reference (The path in db you are trying to read/write/update)
         const dbRef = ref(db);
 
-        get(child(dbRef, `/1`)).then((snapshot) => {
+        get(child(dbRef, `/`)).then((snapshot) => {
             if (snapshot.exists()) {
                 console.log(snapshot.val());
             } else {
@@ -31,3 +31,17 @@
             }).catch((error) => {
                 console.error(error);
             });
+
+
+/*function FetchAllData() {
+        firebase
+          .database()
+          .ref("Certificates-List")
+          .once("value", function (snapshot) {
+            snapshot.forEach(function (ChildSnapshot) {
+              let courseName = ChildSnapshot.val().courseName;
+              let institute = ChildSnapshot.val().institute;
+              addItemsToList(courseName, institute);
+            });
+          });
+      }*/

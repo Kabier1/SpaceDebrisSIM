@@ -1,58 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information Side Bar</title>
 <style>
- .info-box {
-          position: absolute;
-          right: 0;
-          width: 200px;
-          height:90vh;
-          background-color: black;
-          padding-top: 0px;
-          box-sizing: border-box;
-          overflow: scroll;
+    .info-box {
+      position: absolute;
+      right: 0%;
+      width: 100%;
+      height:99vh;
+      background-color: black;
+      padding-top: 0%;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     .normal {
       font-weight: normal;
       font-family:verdana;
       color:blue;
-      font-size:1em;
-      padding-left:10px
+      font-size:8vw;
+      padding-left:5%
     }
 
     .title {
       font-weight: bold;
       font-family:verdana;
       color:red;
-      font-size:1.25em;
+      font-size:9vw;
       text-decoration-line: underline;
-      padding-left:0px
+      padding-left:0%
     }
+
+    .responsiveImg {
+      width: 80%;
+      height: auto;
+      padding-left: 7%;
+    }
+
 </style>
 </head>
 <body>
 <div class="info-box">
 
-  <p class="title"> Stat1 of the Year </p>
+  <p class="title"> Stat of the Year </p>
   <p class="normal"> Satelites active  = 200</p>
   <p class="normal"> Debris active     = 500</p>
+  <p class="normal"> Debris Decay = 300 </p>
   <p class="normal"> Debris Decay = 300 </p>
 
   <p class="title"> Facts of the Year </p>
   <p class="normal"> Cold War Peaked</p>
   <p class="normal"> China Went to Space </p>
   <p class="normal"> India Missile Test </p>
+  <p class="normal"> Debris Decay = 300 </p>
 
   <p class="title"> Impact in the Year </p>
   <p class="normal"> 5 Near Misses </p>
   <p class="normal"> 4 Accidents </p>
   <p class="normal"> SpaceX launch </p>
+  <p class="normal"> Debris Decay = 300 </p>
 
-  <p class="title"> Join the Movement </p>
-  <img src = "/images/qrcode_github.com.png" width="150" height="150"/>
+  <p class="title"> Take up the Cause </p>
+  <p class="normal">  Build with us on Github </p>
+  <img src = "/images/qrcode_github.com.png" class = "responsiveImg"/>
 </div>
 
 </body>
