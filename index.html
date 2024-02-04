@@ -1,410 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpaceDebris</title>
-    <style>
-
-        body {
-          margin: 0;
-          overflow: hidden;
-          background-color: black;
-        }
-
-        #earth-container {
-          perspective: 1000px;
-          width: 100%;
-          height: 100vh;
-          position: relative;
-          animation: rotateEarth 10s linear infinite;
-        }
-
-        #earth {
-          position: absolute;
-          top: 35%;
-          left: 42%;
-          width: 400px;
-          height: 400px;
-          margin-top: -100px;
-          margin-left: -100px;
-          border-radius: 50%;
-          /*#background: url('https://upload.wikimedia.org/wikipedia/commons/7/7f/Rotating_earth_animated_transparent.gif') no-repeat center center;*/
-          background: url('/images/Rotating_earth_animated_transparent.gif') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          /*<!--//transform: rotateX(60deg);-->*/
-        }
-
-        #satellite1 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-2d;
-          animation: rotateSatellite1 25s linear infinite;
-          /*<!--// The 25s will adjust Speed of the Satelite, less means faster-->
-          <!--// A geostationery orbit on the equater needs this value to be 9.6-->*/
-        }
-
-        @keyframes rotateSatellite1 {
-              0% {
-                transform: skewY(135deg) rotateY(0deg) translateZ(200px) rotateY(0deg);
-              }
-              100% {
-                transform: skewY(135deg) rotateY(360deg) translateZ(200px) rotateY(360deg);
-                /*<!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->*/
-              }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SpaceDebris</title>
+        <style>
+            body {
+              margin: 0;
+              overflow: hidden;
+              background-color: black;
             }
 
-        #satellite2 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite2 4s linear infinite;
-        }
+            .earthDebrisField {
+                width: 85%;
+                height:90vh;
+                background-color: black;
+                box-sizing: border-box;
+                overflow: scroll;
+            }
 
-        @keyframes rotateSatellite2 {
-          0% {
-            transform: skewY(45deg) rotateY(0deg) translateZ(150px) rotateY(0deg);
-          }
-          100% {
-            transform: skewY(45deg) rotateY(360deg) translateZ(150px) rotateY(360deg);
-            /*<!--// translateZ (perigree) indicates the height of the orbit from the earths surface-->
-            <!--// This will not scale linearly with Skew, so get a relation between the two to get this accurate-->*/
-          }
-        }
+             .responsive-iframe-earth {
+                position: relative;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
 
+            .containerSlider {
+                position: absolute;
+                width: 100%;
+                overflow: scroll;
+                padding-top: 0%;
+            }
 
-        #satellite3 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite3 9.6s linear infinite;
-        }
+            .responsive-iframe-slider {
+                position: relative;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
 
-        @keyframes rotateSatellite3 {
-          0% {
-            transform: skewY(0deg) rotateY(0deg) translateZ(250px) rotateY(0deg)
-          }
-          100% {
-            transform: skewY(0deg) rotateY(360deg) translateZ(250px) rotateY(360deg);
-            /*<!--//Changing translateZ to translate and rotateY to rotateZ will give a 2D effect with the satellite rotating in the same plane as the earth image-->*/
+            .info-box {
+                  position: absolute;
+                  right: 0;
+                  width: 200px;
+                  height:90vh;
+                  background-color: black;
+                  padding-top: 0px;
+                  box-sizing: border-box;
+                  overflow: scroll;
+            }
 
-          }
-        }
+             .responsive-iframe-info {
+                position: relative;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
 
-        #satellite4 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite4 3s linear infinite;
-        }
+            iframe {
+                 border: 1em solid black;
+            }
 
-         @keyframes rotateSatellite4 {
-          0% {
-            transform: skewY(80deg) rotateY(0deg) translateZ(45px) rotateY(0deg);
-          }
-          100% {
-            transform: skewY(80deg) rotateY(360deg) translateZ(45px) rotateY(360deg);
-            /*<!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->*/
-          }
-        }
+        </style>
+    </head>
 
-        #satellite5 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite5 5s linear infinite;
-        }
+    <body>
 
-        @keyframes rotateSatellite5 {
-          0% {
-            transform: skewY(105deg) rotateY(0deg) translateZ(130px) rotateY(0deg);
-          }
-          100% {
-            transform: skewY(105deg) rotateY(360deg) translateZ(130px) rotateY(360deg);
-            /*<!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->*/
-          }
-        }
+        <div class="info-box">
+            <iframe class="responsive-iframe-info" src="/infoSideBar.html" title="Information"></iframe>
+        </div>
 
-        #satellite6 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite6 5.5s linear infinite;
-        }
+        <div class="earthDebrisField">
+            <iframe class="responsive-iframe-earth" src="/earthDebris.html" title="Main View"></iframe>
+        </div>
 
-        @keyframes rotateSatellite6 {
-          0% {
-            transform: skewY(115deg) rotateY(0deg) translateZ(160px) rotateY(0deg);
-          }
-          100% {
-            transform: skewY(115deg) rotateY(360deg) translateZ(160px) rotateY(360deg);
-            /*<!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->*/
-          }
-        }
+        <div class="containerSlider">
+            <iframe class="responsive-iframe-slider" src="/slider.html" title="Slide Across Years"></iframe>
+        </div>
 
-        #satellite7 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite7 10s linear infinite;
-        }
-
-        @keyframes rotateSatellite7 {
-          0% {
-            transform: skewY(125deg) rotateY(0deg) translateZ(100px) rotateY(0deg);
-          }
-          100% {
-            transform: skewY(125deg) rotateY(360deg) translateZ(100px) rotateY(360deg);
-            /*<!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->*/
-          }
-        }
-
-        #satellite8 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite8 9.6s linear infinite;
-        }
-
-        @keyframes rotateSatellite8 {
-          0% {
-            transform: skewY(95deg) rotateY(0deg) translateZ(90px) rotateY(0deg);
-          }
-          100% {
-            transform: skewY(95deg) rotateY(360deg) translateZ(90px) rotateY(360deg);
-            /*<!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->*/
-          }
-        }
-
-        #satellite9 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite9 8s linear infinite;
-        }
-
-        @keyframes rotateSatellite9 {
-          0% {
-            transform: skewY(55deg) rotateY(0deg) translateZ(150px) rotateY(0deg);
-          }
-          100% {
-            transform: skewY(55deg) rotateY(360deg) translateZ(150px) rotateY(360deg);
-            /*<!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->*/
-          }
-        }
-
-        #satellite10 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite10 12s linear infinite;
-        }
-
-        @keyframes rotateSatellite10 {
-          0% {
-            transform: skewY(145deg) rotateY(0deg) translateZ(120px) rotateY(0deg);
-          }
-          100% {
-            transform: skewY(145deg) rotateY(360deg) translateZ(120px) rotateY(360deg);
-            /*<!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->*/
-          }
-        }
-
-        #satellite11 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite11 4s linear infinite;
-        }
-
-        @keyframes rotateSatellite11 {
-          0% {
-            transform: skewY(75deg) rotateY(0deg) translateZ(185px) rotateY(0deg);
-          }
-          100% {
-            transform: skewY(75deg) rotateY(360deg) translateZ(185px) rotateY(360deg);
-            /*<!--//Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation-->*/
-          }
-        }
-
-        #satellite12 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: 5px;
-          height: 5px;
-          background: url('/images/png-satellite.png') no-repeat center center;
-          background-size: cover;
-          transform-style: preserve-3d;
-          animation: rotateSatellite12 14s linear infinite;
-        }
-
-        @keyframes rotateSatellite12 {
-          0% {
-            transform: skewY(35deg) rotateY(0deg) translateZ(140px) rotateY(0deg);
-          }
-          100% {
-            transform: skewY(35deg) rotateY(360deg) translateZ(140px) rotateY(360deg);
-            /*<!-- //Switching the rotateY element from 0 to 360 in the above statements will also change clock or anticlockwise rotation -->*/
-          }
-        }
-
-    .containerSlider {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        padding-top: 5%;
-    }
-
-    .responsive-iframe1 {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    iframe {
-         border: 1em solid black;
-    }
-
-    .vertical-box {
-          position: absolute;
-          right: 0;
-          width: 200px;
-          height:100vh;
-          background-color: #000000;
-          padding-top: 60px;
-          box-sizing: border-box;
-          overflow: scroll;
-    }
-
-    p.normal {
-      font-weight: normal;
-      font-family:verdana;
-      color:blue;
-      font-size:1em;
-      padding-left:10px
-    }
-
-    p.title {
-      font-weight: bold;
-      font-family:verdana;
-      color:red;
-      font-size:1.25em;
-      text-decoration-line: underline;
-      padding-left:0px
-    }
-</style>
-</head>
-<body>
-<div class="vertical-box">
-    <p> \n </p>
-    <p class="title"> Stats of the Year </p>
-        <p class="normal"> Satelites active  = 200</p>
-        <p class="normal"> Debris active     = 500</p>
-        <p class="normal"> Debris Decay = 300 </p>
-
-    <p class="title"> Facts of the Year </p>
-        <p class="normal"> Cold War Peaked</p>
-        <p class="normal"> China Went to Space </p>
-        <p class="normal"> India Missile Test </p>
-
-    <p class="title"> Impact in the Year </p>
-        <p class="normal"> 5 Near Misses </p>
-        <p class="normal"> 4 Accidents </p>
-        <p class="normal"> SpaceX launch </p>
-
-        <p class="title"> Join the Movement </p>
-        <img src = "/images/qrcode_github.com.png" width="150" height="150"/>
-</div>
-
-<div class="containerSlider">
-    <iframe class="responsive-iframe1" src="/slider.html" title="Slide Across Years"></iframe>
-</div>
-
-
-<div id="earth-container">
-    <div id="earth">
-        <div id="satellite1"></div>
-        <div id="satellite2"></div>
-        <div id="satellite3"></div>
-        <div id="satellite4"></div>
-        <div id="satellite5"></div>
-        <div id="satellite6"></div>
-        <div id="satellite7"></div>
-        <div id="satellite8"></div>
-        <div id="satellite9"></div>
-        <div id="satellite10"></div>
-        <div id="satellite11"></div>
-        <div id="satellite12"></div>
-    </div>
-</div>
-
-<script type="module" src="/JS/main.js"> </script>
-
-</body>
+    </body>
 </html>
-
-/* <!--Time delay, so they may run at the same speed but out of phase with each other -->
-<!--//Adjust SPeed of satellite - Done - use the animation property -->
-<!--//Adjust height from center --> */ 
