@@ -1,8 +1,8 @@
 //This is the main JS files to be referred to in index.html
 //Import the functions you need from the SDKs you need -->
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-        import { getDatabase, ref, get, query, onValue, child } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
-        import {collection, where } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
+        import { getDatabase, ref, get, onValue, child } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
+        import {collection, query, where } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
 
         //Your web app's Firebase configuration
         const firebaseConfig = {
@@ -28,7 +28,7 @@
           console.log("Year Changed to "+ uptoYear);
         });
 
-        const Debris = collection(dbRef, "Debris");
+        const Debris = collection(db, "Debris");
 
         // Create a query against the collection.
         const q = query(Debris, where("LAUNCH_YEAR", "<=", uptoYear));
