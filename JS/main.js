@@ -15,11 +15,22 @@
             messagingSenderId: "978087687350",
             appId: "1:978087687350:web:9c3f6676f40f30decc2217"
        };
-
+/*
+        //Function to Add to @Keyframes to styles
+        var dynamicStyles = null;
+        function addAnimation(body) {
+            dynamicStyles = document.createElement('style');
+            dynamicStyles.type = 'text/css';
+            document.head.appendChild(dynamicStyles);
+            dynamicStyles.sheet.insertRule(body);
+            console.log("len of Dynamic Style :"+ dynamicStyles.length);
+        };
+*/
         //Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app); // <-- Pass in the initialized app
         var oldYear = "1957";
+        var assignOrbit = 1;
 
         //Creating the reference (The path in db you are trying to read/write/update)
         const dbRef = ref(db);
@@ -36,34 +47,68 @@
           if (uptoYear <= oldYear) {
             for (let i = oldYear; i >= uptoYear; i--){
             //TODO - Clear only differential Debris
-
             }
           } else {
             //No need to clear any Debris, just add the incremental
             console.log("At 1.51 - uptoYear: "+uptoYear+" and oldYear: "+oldYear);
               for (let i = oldYear; i <= uptoYear; i++){
+                var countInYear = 0;
                 get(child(dbRef, `/Debris/0/`+ i)).then((snapshot) => {
                   if (snapshot.exists()) {
                     snapshot.forEach(function (childSnapshot) {
                     var yearKey = snapshot.key;
                     var childKey = childSnapshot.key;
-                    var childData = childSnapshot.val();
-                    var apogee = childData.APOGEE;// APOGEE
-                    var perigee = childData.PERIGEE;// PERIGEE
-                    var period = childData.PERIOD;// PERIOD
-                    var decay = childData.DECAY;// DECAY
-                    var angle = childData.INCLINATION;//angle
+                    //var childData = childSnapshot.val();
+                    //var apogee = childData.APOGEE;// APOGEE
+                    //var perigee = childData.PERIGEE;// PERIGEE
+                    //var period = childData.PERIOD;// PERIOD
+                    //var decay = childData.DECAY;// DECAY
+                    //var angle = childData.INCLINATION;//angle
+                        console.log("At 1.70: Year: "+yearKey);
+                        console.log("At 1.71: Object: "+childKey);
+                    //    console.log("At 1.74: Apogee: "+apogee);
+                    //    console.log("At 1.74: Perigee: "+perigee);
+                    //    console.log("At 1.75: period: "+period);
+                    //    console.log("At 1.76: decay: "+decay);
+                    //    console.log("At 1.77: angle: "+angle);
 
+                    //TODO - Start Repainting Differential Debris
 
-                    //TODO - Repaint deferential Debris again on animation the loop will take care of the rest
+                      //addAnimation('#YearObject1 {position: absolute;top: 50%;left: 50%;width: 5px;height: 5px; background-size: cover;transform-style: preserve-3d;animation: rotateYearObject1 4s linear infinite;}');
+                      //addAnimation('@keyframes rotateYearObject1 { 0% {transform: skewY(135deg) rotateY(0deg) translateZ(200px) rotateY(0deg);}100% {transform: skewY(135deg) rotateY(360deg) translateZ(200px) rotateY(360deg);}}');
 
-                    console.log("At 1.70: Year: "+yearKey);
-                    console.log("At 1.71: Object: "+childKey);
-                    console.log("At 1.74: Apogee: "+apogee);
-                    console.log("At 1.74: Perigee: "+perigee);
-                    console.log("At 1.75: period: "+period);
-                    console.log("At 1.76: decay: "+decay);
-                    console.log("At 1.76: angle: "+angle);
+                  if (countInYear <= 25) {
+                      countInYear++;
+                      var element = document.createElement("div");
+                      element.id = yearKey+childKey;
+
+                      switch (assignOrbit) {
+                      case 1:
+                      element.className = "Object1";
+                      break;
+                      case 2:
+                      element.className = "Object2";
+                      break;
+                      case 3:
+                      element.className = "Object3";
+                      break;
+                      case 4:
+                      element.className = "Object4";
+                      break;
+                      case 5:
+                      element.className = "Object5";
+                      break;
+                      case 6:
+                      element.className = "Object6";
+                      break;
+                      };
+
+                      document.getElementById("mainearth").appendChild(element);
+                  };
+                    //TODO - End Repainting  deferential Debris
+
+                  assignOrbit=assignOrbit+1;
+                  if (assignOrbit > 6) {assignOrbit = 1;};
 
                   });
                   onlyOnce: true;
