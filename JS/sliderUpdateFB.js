@@ -38,16 +38,20 @@
 //Creating the reference (The path in db you are trying to read/write/update)
         const dbRef = ref(db);
 
+
 //Update the year on the screen beside the slider based on where the slider is
     const slider = document.getElementById('slider');
     const selectedValue = document.getElementById('selectedValue');
+
+    console.log("Resetting Year in FB Db to 1957 Now:");
+    writeSliderDate("1957"); //reset at start
 
     slider.addEventListener
     ('input', () =>
       {
       selectedValue.textContent = slider.value
 //Update Slider Year Value to Firebase DB
-      console.log(slider.value);
+      console.log("Year on Slider: "+ slider.value);
       writeSliderDate(slider.value);
       }
     );
