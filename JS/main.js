@@ -45,12 +45,30 @@
 
           console.log("At 1.5 - uptoYear: "+uptoYear+" and oldYear: "+oldYear);
           if (uptoYear <= oldYear) {
-            for (let i = oldYear; i >= uptoYear; i--){
-            //TODO - Clear only differential Debris
-            }
+            for (let i = uptoYear; i <= oldYear; i++){
+            //Clear only differential Debris
+             console.log("At 1.509 i/year is "+i);
+            var elements = document.getElementsByTagName('div');
+            var noOfElements = elements.length;
+            console.log("At 1.51 - noOfElements: "+noOfElements);
+            console.log("At 1.5101 - removed: "+countDeleted);
+            var countDeleted = 0;
+            for (var j=0; j < noOfElements; j++) {
+             console.log("At 1.511 j/noofelements is "+j);
+             var objectId = elements[j].id;
+             var objectIdYear = objectId.substring(0,4);
+             console.log("At 1.512 id and year "+objectId+" and "+objectIdYear);
+             if (objectIdYear >= i && (objectId != "mainearth")){
+             var element = document.getElementById(objectId);
+             element.remove();
+             noOfElements = noOfElements-1;
+             countDeleted++;
+             console.log("At 1.513 Year / Deleted: "+objectIdYear+" / "+countDeleted);
+             }};
+            };
           } else {
             //No need to clear any Debris, just add the incremental
-            console.log("At 1.51 - uptoYear: "+uptoYear+" and oldYear: "+oldYear);
+            console.log("At 1.55 - uptoYear: "+uptoYear+" and oldYear: "+oldYear);
               for (let i = oldYear; i <= uptoYear; i++){
                 var countInYear = 0;
                 get(child(dbRef, `/Debris/0/`+ i)).then((snapshot) => {
@@ -72,12 +90,12 @@
                     //    console.log("At 1.76: decay: "+decay);
                     //    console.log("At 1.77: angle: "+angle);
 
-                    //TODO - Start Repainting Differential Debris
+                    // Start Repainting Differential Debris
 
                       //addAnimation('#YearObject1 {position: absolute;top: 50%;left: 50%;width: 5px;height: 5px; background-size: cover;transform-style: preserve-3d;animation: rotateYearObject1 4s linear infinite;}');
                       //addAnimation('@keyframes rotateYearObject1 { 0% {transform: skewY(135deg) rotateY(0deg) translateZ(200px) rotateY(0deg);}100% {transform: skewY(135deg) rotateY(360deg) translateZ(200px) rotateY(360deg);}}');
 
-                  if (countInYear <= 25) {
+                  if (countInYear <= 5) { //update this to a higher number to increase concentration of objects
                       countInYear++;
                       var element = document.createElement("div");
                       element.id = yearKey+childKey;
@@ -101,14 +119,26 @@
                       case 6:
                       element.className = "Object6";
                       break;
+                      case 7:
+                      element.className = "Object7";
+                      break;
+                      case 8:
+                      element.className = "Object8";
+                      break;
+                      case 9:
+                      element.className = "Object9";
+                      break;
+                      case 10:
+                      element.className = "Object10";
+                      break;
                       };
 
                       document.getElementById("mainearth").appendChild(element);
                   };
-                    //TODO - End Repainting  deferential Debris
+                    // End Repainting  deferential Debris
 
                   assignOrbit=assignOrbit+1;
-                  if (assignOrbit > 6) {assignOrbit = 1;};
+                  if (assignOrbit > 10) {assignOrbit = 1;};
 
                   });
                   onlyOnce: true;
@@ -123,7 +153,6 @@
             }
               console.log("At 2 - uptoYear: "+uptoYear+" and oldYear: "+oldYear);
               oldYear = uptoYear;
-           //TODO - Get Text For the uptpyear on Slider to show on sidebar
         });
 
 
